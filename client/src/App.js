@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Players from "./components/Players";
+import useDarkMode from "./hooks/useDarkMode";
 
 function App() {
+  const [darkMode, setDarkMode, handleClick] = useDarkMode();
+
+  const buttonText = darkMode === false ? "To Dark" : "To White";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={darkMode === false ? "App" : `AppDark`}>
+      <button data-testid="button" className="btn" onClick={handleClick}>
+        {buttonText}
+      </button>
+      <Players data-testid="players" />
     </div>
   );
 }
